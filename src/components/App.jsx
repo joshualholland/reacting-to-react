@@ -17,12 +17,17 @@ class App extends Component {
 
     handleTextChange(e) {
         this.setState({
-            value: e.target.value,
             text: e.target.value
         })
     }
 
-    hasLoaded(e) {
+    loadIt(e) {
+        this.setState({
+            loaded: true
+        })
+    }
+
+    unloadIt(e) {
         this.setState({
             loaded: false
         })
@@ -39,15 +44,15 @@ class App extends Component {
             return (
                 <>
                     <h1>Loading...</h1>
-                    <button onClick={(e) => this.componentDidMount(e)} >Click</button>
+                    <button onClick={(e) => this.loadIt(e)} >Click</button>
                 </>
             )
         } else
             return (
                 <>
                     <h1>{this.props.name} {this.state.text}</h1>
-                    <input placeholder={this.state.placeholder} onChange={(e) => this.handleTextChange(e)} />
-                    <button onClick={(e) => this.hasLoaded(e)} >Click</button>
+                    <input value={this.state.text} placeholder={this.state.placeholder} onChange={(e) => this.handleTextChange(e)} />
+                    <button onClick={(e) => this.unloadIt(e)} >Click</button>
                 </>
             )
     }
